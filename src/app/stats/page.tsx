@@ -2,24 +2,13 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { isAdminKey } from "@/lib/server/admin";
 import { db } from "@/lib/server/db";
+import { getDaily, getTotals } from "@/lib/server/traction";
 
 export const dynamic = "force-dynamic";
 export const metadata: Metadata = { title: "Traction", robots: { index: false, follow: false } };
 
 type Props = { searchParams: Promise<{ key?: string }> };
 
-interface Totals {
-  users: number;
-  users_in_rooms: number;
-  rooms: number;
-  rooms_2plus: number;
-  cards: number;
-  votes: number;
-  pools: number;
-  claims: number;
-  returning: number;
-  demo_runs: number;
-}
 
 /**
  * Private traction dashboard. Real usage only: demo rooms and simulated
@@ -30,34 +19,7 @@ export default async function StatsPage({ searchParams }: Props) {
   if (!isAdminKey(key)) notFound();
   const sql = db();
 
-  const [totals] = await sql<Totals[]>`
-    with real_rooms as (select id from rooms where not is_demo),
-         real_members as (
-           select m.room_id, m.user_id from room_members m
-           join real_rooms r on r.id = m.room_id
-           join users u on u.id = m.user_id and not u.is_sim)
-    select
-      (select count(*)::int from users where not is_sim) as users,
-      (select count(distinct user_id)::int from real_members) as users_in_rooms,
-      (select count(distinct room_id)::int from real_members) as rooms,
-      (select count(*)::int from (select room_id from real_members group by room_id having count(*) >= 2) x) as rooms_2plus,
-      (select count(*)::int from cards c join real_rooms r on r.id = c.room_id) as cards,
-      (select count(*)::int from votes v join cards c on c.id = v.card_id join real_rooms r on r.id = c.room_id) as votes,
-      (select count(*)::int from pools p join real_rooms r on r.id = p.room_id) as pools,
-      (select count(*)::int from pool_members pm join pools p on p.id = pm.pool_id join real_rooms r on r.id = p.room_id
-         where pm.user_id <> p.organiser_id) as claims,
-      (select count(*)::int from users where not is_sim and last_seen_at > created_at + interval '1 day') as returning,
-      (select count(*)::int from demo_runs) as demo_runs`;
-
-  const daily = await sql<{ day: string; active: number; new_users: number }[]>`
-    select to_char(d, 'DD Mon') as day,
-      (select count(distinct e.user_id)::int from events e
-         left join rooms r on r.id = e.room_id
-         join users u on u.id = e.user_id and not u.is_sim
-       where e.created_at >= d and e.created_at < d + interval '1 day' and coalesce(r.is_demo, false) = false) as active,
-      (select count(*)::int from users u where not u.is_sim and u.created_at >= d and u.created_at < d + interval '1 day') as new_users
-    from generate_series(date_trunc('day', now()) - interval '13 days', date_trunc('day', now()), interval '1 day') d
-    order by d`;
+  const [t, daily] = await Promise.all([getTotals(), getDaily(14)]);
 
   const topRooms = await sql<{ room_key: string; members: number; cards: number; pools: number }[]>`
     select r.room_key,
@@ -72,7 +34,6 @@ export default async function StatsPage({ searchParams }: Props) {
     from reports rp left join rooms r on r.id = rp.room_id
     where rp.status = 'open' order by rp.created_at desc limit 30`;
 
-  const t = totals!;
   const tiles: [string, number, string][] = [
     ["Real users", t.users, "guests who opened Limbo"],
     ["In a trip room", t.users_in_rooms, "joined at least one real room"],
@@ -95,7 +56,7 @@ export default async function StatsPage({ searchParams }: Props) {
 
       <section aria-label="Totals" className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-4">
         {tiles.map(([label, value, hint]) => (
-          <div key={label} className="rounded-[var(--radius)] bg-surface p-4">
+          <div key={label} className="rounded-2xl bg-subtle p-4">
             <p className="text-sm text-ink-3">{label}</p>
             <p className="mt-1 text-3xl font-bold tabular-nums">{value}</p>
             {hint ? <p className="mt-1 text-xs text-ink-3">{hint}</p> : null}
@@ -103,7 +64,7 @@ export default async function StatsPage({ searchParams }: Props) {
         ))}
       </section>
 
-      <section aria-labelledby="daily" className="mt-8 rounded-[var(--radius)] bg-surface p-4">
+      <section aria-labelledby="daily" className="mt-8 rounded-2xl bg-subtle p-4">
         <h2 id="daily" className="font-semibold">
           Active people per day (last 14 days)
         </h2>
@@ -111,7 +72,7 @@ export default async function StatsPage({ searchParams }: Props) {
           {daily.map((d) => (
             <li key={d.day} className="flex h-full flex-1 flex-col items-center justify-end gap-1" title={`${d.day}: ${d.active} active, ${d.new_users} new`}>
               <span className="text-xs tabular-nums text-ink-2">{d.active || ""}</span>
-              <span className="w-full rounded-t bg-accent" style={{ height: `${(d.active / maxActive) * 100}%`, minHeight: d.active ? 3 : 0 }} />
+              <span className="w-full rounded-t bg-primary" style={{ height: `${(d.active / maxActive) * 100}%`, minHeight: d.active ? 3 : 0 }} />
               <span className="text-[0.65rem] text-ink-3">{d.day.split(" ")[0]}</span>
             </li>
           ))}
@@ -153,7 +114,7 @@ export default async function StatsPage({ searchParams }: Props) {
         ) : (
           <ul className="mt-2 flex flex-col gap-1 text-sm">
             {reports.map((r) => (
-              <li key={r.id} className="rounded bg-surface px-3 py-2">
+              <li key={r.id} className="rounded-xl bg-subtle px-3 py-2">
                 <span className="font-semibold">{r.reason}</span> · {r.target_type} {r.target_id.slice(0, 12)} · {r.room_key ?? "?"} ·{" "}
                 {r.created_at.toISOString().slice(0, 16).replace("T", " ")}
               </li>

@@ -121,14 +121,6 @@ Console settings, secrets and deployment are in [chapter 12](12_run_it_yourself)
 
 ---
 
-## Built during the challenge
-
-Everything in this repository was written for the Nexconn Build Challenge, starting on 13 November 2026. Before that
-there was only the idea and a written product spec; no code, design or earlier app. It was built with the help of an AI
-coding assistant (Claude Code).
-
----
-
 <div align="center">
 
 *When your trip is stuck, you're not stuck alone.*

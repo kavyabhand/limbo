@@ -47,8 +47,10 @@ database (Neon) fit comfortably in free tiers at the start.
 
 ## Traction
 
-Measured from real rooms only: demo rooms and simulated passengers are excluded. The private dashboard at
-`/stats?key=…` shows real users, rooms used, rooms with two or more people, updates, votes, shared cabs and rooms,
+Live numbers are public at **[limbo-sooty.vercel.app/traction](https://limbo-sooty.vercel.app/traction)**: totals
+only, no names, rooms or messages, counted from production on every visit
+([`traction/page.tsx`](../src/app/traction/page.tsx)). Measured from real rooms only: demo rooms and simulated passengers
+are excluded. The private dashboard at `/stats?key=…` shows real users, rooms used, rooms with two or more people, updates, votes, shared cabs and rooms,
 seats claimed, people who came back, and daily active people.
 
 <!-- Fill in from /stats and the Nexconn console before submitting. -->
