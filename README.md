@@ -21,13 +21,13 @@
   <a href="10_tested_for_real"><img src="https://img.shields.io/badge/End--to--end_checks-58_passing-15803d?style=flat-square" alt="58 end-to-end checks passing" /></a>
   <a href="09_the_demo_room"><img src="https://img.shields.io/badge/Try_it-demo_room-1d4ed8?style=flat-square" alt="Demo room" /></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-71717a?style=flat-square" alt="MIT licence" /></a>
-  <a href="assets/demo/limbo-demo.mp4"><img src="https://img.shields.io/badge/Demo_video-2_min-b45309?style=flat-square" alt="Demo video" /></a>
+  <a href="https://limbo-sooty.vercel.app"><img src="https://img.shields.io/badge/Live-limbo--sooty.vercel.app-111113?style=flat-square" alt="Live app" /></a>
+  <a href="https://youtu.be/bTRSKyyD-l0"><img src="https://img.shields.io/badge/Demo_video-YouTube-b91c1c?style=flat-square" alt="Demo video on YouTube" /></a>
   <a href="report/limbo-report.pdf"><img src="https://img.shields.io/badge/Write--up-PDF-52525b?style=flat-square" alt="Write-up (PDF)" /></a>
-  <!-- Live app badge goes here once deployed. -->
 </p>
 
 <p align="center">
-  <a href="assets/demo/limbo-demo.mp4"><img src="assets/demo/poster.jpg" width="80%" alt="Watch the 2-minute demo: two people tap the last seat at the same moment, and exactly one gets it" /></a>
+  <a href="https://youtu.be/bTRSKyyD-l0"><img src="assets/demo/poster.jpg" width="80%" alt="Watch the 2-minute demo: two people tap the last seat at the same moment, and exactly one gets it" /></a>
 </p>
 
 ---
@@ -55,7 +55,7 @@
 
 ## For judges, in two minutes
 
-1. Open the app and tap **Try a demo room**. You get a private room for a delayed flight with eleven simulated
+1. Open **[limbo-sooty.vercel.app](https://limbo-sooty.vercel.app)** and tap **Try a demo room**. You get a private room for a delayed flight with eleven simulated
    passengers and one simulated airline desk, clearly labelled. Over about 80 seconds: a desk is found (tap ✓), a
    German and a Hindi message arrive translated, someone shares a hotel room (tap **Join** for the last spot), and the
    airline posts an official cancellation that is pinned to the top.
@@ -63,7 +63,8 @@
    update in one and confirm it in the other.
 3. Nexconn App Key: **`ik1qhw09iruvp`** (Singapore data centre).
 4. The [write-up](report/limbo-report.pdf) covers the design, the trust model and the measurements in five pages, and
-   the [demo video](assets/demo/limbo-demo.mp4) shows the whole thing in two minutes.
+   the [demo video](https://youtu.be/bTRSKyyD-l0) shows the whole thing in two minutes (also in the repo as
+   [`assets/demo/limbo-demo.mp4`](assets/demo/limbo-demo.mp4)).
 
 ---
 

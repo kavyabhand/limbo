@@ -67,8 +67,10 @@ SCREENSHOTS=shots npm run e2e:demo         # save screenshots
 Limbo is a standard Next.js app and runs on [Vercel](https://vercel.com) as is:
 
 1. Create a Postgres database (Neon, from the Vercel Marketplace, works well) and run `npm run db:migrate` against it.
-2. Import the repository into Vercel and add the environment variables above, with `APP_URL` set to the production
-   address.
+   Pick the region next to your Nexconn data centre; the live site uses Singapore for both.
+2. Import the repository into Vercel and add the environment variables above. `APP_URL` is optional on Vercel: it
+   defaults to the project's production domain. [`vercel.json`](../vercel.json) runs the functions in Singapore
+   (`sin1`), next to Nexconn's Singapore data centre.
 3. Deploy, then run `BASE_URL=https://your-site npm run e2e`.
 
 `/api/health` reports whether the database and the Nexconn Server API are reachable.

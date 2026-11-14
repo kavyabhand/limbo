@@ -2,7 +2,9 @@ import type { Metadata, Viewport } from "next";
 import type { ReactNode } from "react";
 import "./globals.css";
 
-const appUrl = process.env.APP_URL ?? "http://localhost:3000";
+// On Vercel, fall back to the project's production domain so link previews work without extra setup.
+const vercelUrl = process.env.VERCEL_PROJECT_PRODUCTION_URL;
+const appUrl = process.env.APP_URL ?? (vercelUrl ? `https://${vercelUrl}` : "http://localhost:3000");
 
 export const metadata: Metadata = {
   metadataBase: new URL(appUrl),

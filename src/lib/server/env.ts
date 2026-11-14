@@ -17,6 +17,11 @@ const schema = z.object({
   APP_URL: z.string().url().default("http://localhost:3000"),
 });
 
+// On Vercel, default to the project's production domain (keeps cookies `Secure` without extra setup).
+if (!process.env.APP_URL && process.env.VERCEL_PROJECT_PRODUCTION_URL) {
+  process.env.APP_URL = `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`;
+}
+
 export type Env = z.infer<typeof schema>;
 
 let cached: Env | null = null;

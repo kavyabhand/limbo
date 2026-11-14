@@ -3,8 +3,8 @@
 
 % ------------------------------------------------------------------ links (edit before final build)
 \newcommand{\RepoURL}{https://github.com/kavyabhand/limbo}
-\newcommand{\VideoURL}{https://github.com/kavyabhand/limbo/blob/main/assets/demo/limbo-demo.mp4}
-\newcommand{\LiveText}{Deployment in progress; the link is added to the repository README}
+\newcommand{\VideoURL}{https://youtu.be/bTRSKyyD-l0}
+\newcommand{\LiveURL}{https://limbo-sooty.vercel.app}
 \newcommand{\AppKey}{ik1qhw09iruvp}
 
 % ------------------------------------------------------------------ packages
@@ -74,8 +74,8 @@
 \begin{tcolorbox}[colback=subtle,colframe=subtle,arc=4pt,left=10pt,right=10pt,top=6pt,bottom=6pt]
 \small
 \begin{tabularx}{\textwidth}{@{}l X l X@{}}
-\textbf{Nexconn App Key} & \code{\AppKey} (Singapore data centre) & \textbf{Repository} & \url{\RepoURL} \\
-\textbf{Demo video} & \href{\VideoURL}{\code{assets/demo/limbo-demo.mp4}} (2 min 5 s) & \textbf{Live app} & \LiveText \\
+\textbf{Nexconn App Key} & \code{\AppKey} (Singapore data centre) & \textbf{Repository} & \href{\RepoURL}{\code{github.com/kavyabhand/limbo}} \\
+\textbf{Demo video} & \href{\VideoURL}{\code{youtu.be/bTRSKyyD-l0}} \,(2:05) & \textbf{Live app} & \href{\LiveURL}{\code{limbo-sooty.vercel.app}} \\
 \textbf{Built} & From scratch during the challenge (\S\ref{sec:before}) & \textbf{Licence} & MIT \\
 \end{tabularx}
 \end{tcolorbox}
@@ -392,8 +392,8 @@ never connect a client and do not count as monthly active users.
 
 % ------------------------------------------------------------------ 8
 \section{Evaluation}\label{sec:eval}
-All measurements use the production build (\code{next start}) on a laptop in India, a local Postgres, and the live
-Nexconn app in the Singapore data centre. Nothing is mocked. Raw data is in \code{report/data/}.
+Measurements use the production build (\code{next start}) on a laptop in India, a local Postgres, and the live
+Nexconn app in the Singapore data centre. Nothing is mocked. Raw data is in \code{report/data/}. The same 58 checks also pass against the live deployment (Vercel functions and Neon Postgres, both in Singapore).
 
 \subsection{Correctness}
 Table~\ref{tab:suites} lists the test suites. The browser suites drive real Chrome instances, one per person, each with
