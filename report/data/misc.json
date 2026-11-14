@@ -1,0 +1,6 @@
+{
+  "ed25519": { "verifyMs": 0.83, "signMs": 0.205, "signatureBytes": 64, "library": "@noble/ed25519 3.2.0, Node 22, Apple silicon" },
+  "roomPage": { "scripts": 11, "jsKBGzip": 239, "cssKBGzip": 6.1, "htmlKBGzip": 2.7 },
+  "nonBlankLines": { "server": 1165, "shared": 655, "client": 879, "apiRoutes": 302, "components": 2266, "pages": 401, "unitTests": 232, "e2eAndBench": 430, "sql": 121 },
+  "tables": 12
+}

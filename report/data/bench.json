@@ -1,0 +1,256 @@
+{
+  "when": "2026-11-14T08:39:35.516Z",
+  "base": "local production build (next start) + live Nexconn (Singapore)",
+  "race": {
+    "trials": 30,
+    "racers": 8,
+    "exactlyOneWinner": 30,
+    "detail": [
+      {
+        "seats": 1,
+        "waitlisted": 7,
+        "ms": 355,
+        "final": null
+      },
+      {
+        "seats": 1,
+        "waitlisted": 7,
+        "ms": 303,
+        "final": null
+      },
+      {
+        "seats": 1,
+        "waitlisted": 7,
+        "ms": 250,
+        "final": null
+      },
+      {
+        "seats": 1,
+        "waitlisted": 7,
+        "ms": 258,
+        "final": null
+      },
+      {
+        "seats": 1,
+        "waitlisted": 7,
+        "ms": 289,
+        "final": null
+      },
+      {
+        "seats": 1,
+        "waitlisted": 7,
+        "ms": 642,
+        "final": null
+      },
+      {
+        "seats": 1,
+        "waitlisted": 7,
+        "ms": 269,
+        "final": null
+      },
+      {
+        "seats": 1,
+        "waitlisted": 7,
+        "ms": 303,
+        "final": null
+      },
+      {
+        "seats": 1,
+        "waitlisted": 7,
+        "ms": 278,
+        "final": null
+      },
+      {
+        "seats": 1,
+        "waitlisted": 7,
+        "ms": 254,
+        "final": null
+      },
+      {
+        "seats": 1,
+        "waitlisted": 7,
+        "ms": 992,
+        "final": null
+      },
+      {
+        "seats": 1,
+        "waitlisted": 7,
+        "ms": 378,
+        "final": null
+      },
+      {
+        "seats": 1,
+        "waitlisted": 7,
+        "ms": 341,
+        "final": null
+      },
+      {
+        "seats": 1,
+        "waitlisted": 7,
+        "ms": 259,
+        "final": null
+      },
+      {
+        "seats": 1,
+        "waitlisted": 7,
+        "ms": 373,
+        "final": null
+      },
+      {
+        "seats": 1,
+        "waitlisted": 7,
+        "ms": 273,
+        "final": null
+      },
+      {
+        "seats": 1,
+        "waitlisted": 7,
+        "ms": 291,
+        "final": null
+      },
+      {
+        "seats": 1,
+        "waitlisted": 7,
+        "ms": 435,
+        "final": null
+      },
+      {
+        "seats": 1,
+        "waitlisted": 7,
+        "ms": 511,
+        "final": null
+      },
+      {
+        "seats": 1,
+        "waitlisted": 7,
+        "ms": 346,
+        "final": null
+      },
+      {
+        "seats": 1,
+        "waitlisted": 7,
+        "ms": 721,
+        "final": null
+      },
+      {
+        "seats": 1,
+        "waitlisted": 7,
+        "ms": 256,
+        "final": null
+      },
+      {
+        "seats": 1,
+        "waitlisted": 7,
+        "ms": 253,
+        "final": null
+      },
+      {
+        "seats": 1,
+        "waitlisted": 7,
+        "ms": 301,
+        "final": null
+      },
+      {
+        "seats": 1,
+        "waitlisted": 7,
+        "ms": 373,
+        "final": null
+      },
+      {
+        "seats": 1,
+        "waitlisted": 7,
+        "ms": 388,
+        "final": null
+      },
+      {
+        "seats": 1,
+        "waitlisted": 7,
+        "ms": 301,
+        "final": null
+      },
+      {
+        "seats": 1,
+        "waitlisted": 7,
+        "ms": 270,
+        "final": null
+      },
+      {
+        "seats": 1,
+        "waitlisted": 7,
+        "ms": 257,
+        "final": null
+      },
+      {
+        "seats": 1,
+        "waitlisted": 7,
+        "ms": 277,
+        "final": null
+      }
+    ]
+  },
+  "latencyMs": {
+    "session": {
+      "n": 34,
+      "p50": 118.3,
+      "p90": 140,
+      "p99": 151,
+      "mean": 122.3
+    },
+    "join (creates room)": {
+      "n": 1,
+      "p50": 90,
+      "p90": 90,
+      "p99": 90,
+      "mean": 90
+    },
+    "join": {
+      "n": 33,
+      "p50": 98.4,
+      "p90": 127.1,
+      "p99": 412.1,
+      "mean": 111
+    },
+    "post update": {
+      "n": 6,
+      "p50": 93.7,
+      "p90": 105.6,
+      "p99": 105.6,
+      "mean": 95
+    },
+    "vote": {
+      "n": 54,
+      "p50": 91.9,
+      "p90": 115.8,
+      "p99": 220.2,
+      "mean": 98
+    },
+    "room state": {
+      "n": 10,
+      "p50": 6.9,
+      "p90": 9.9,
+      "p99": 9.9,
+      "mean": 6.6
+    },
+    "create pool": {
+      "n": 30,
+      "p50": 209.9,
+      "p90": 301.4,
+      "p99": 517.7,
+      "mean": 227.3
+    },
+    "claim (raced)": {
+      "n": 240,
+      "p50": 117.7,
+      "p90": 345.5,
+      "p99": 641.5,
+      "mean": 171.8
+    },
+    "close pool": {
+      "n": 30,
+      "p50": 184.7,
+      "p90": 309.8,
+      "p99": 418.7,
+      "mean": 203.7
+    }
+  }
+}
